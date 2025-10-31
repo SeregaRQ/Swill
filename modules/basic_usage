@@ -1,0 +1,25 @@
+-- SWILL Basic Usage Example
+-- Пример использования основных функций
+
+local SWILL = getgenv().SWILL
+
+if not SWILL then
+    warn("SWILL not loaded. Run loader.lua first.")
+    return
+end
+
+-- Доступ к модулям
+local PlayerIntel = SWILL.Modules.PlayerIntel
+local MovementTracker = SWILL.Modules.MovementTracker
+
+-- Пример: Получить данные всех игроков
+local players = PlayerIntel:GetAllPlayersData()
+for _, player in pairs(players) do
+    print(string.format("%s - %s (Distance: %d)", 
+        player.Name, player.Status, player.Distance))
+end
+
+-- Пример: Получить данные движения
+local movement = MovementTracker:GetMovementData()
+print(string.format("Position: %s", movement.Position))
+print(string.format("Speed: %d", movement.Speed))
